@@ -77,7 +77,7 @@ pike_store.render = function() {
     var ul_el = document.createElement('ul');
 
     //puts the store name into the h2 element
-    h2_el.textContent= this.store_name;
+    h2_el.textContent = this.store_name;
 
     //starts for loop. Will keep going as long as i is short than the array length of cookies per hour
     //in this case, it will repeat for the hours the store is open, create a list item for each hour, and
@@ -103,3 +103,49 @@ console.log(document);
 //shows everything on the page
 pike_store.render();
 
+/*=========BEGINNING OF SEATAC STORE ==========*/
+var seatac_store = {
+    min_cust: 3,
+    max_cust: 24,
+    avg_cookies_per_cust: 1.2,
+    store_name: 'Salmon Cookies - SeaTac Airport',
+    store_open: 8,
+    store_close: 19,
+    cookies_sold_each_hour:[]
+}
+
+seatac_store.cookies_per_hour = function() {
+    var random_customers = Math.floor(_random(this.min_cust, this.max_cust));
+    return Math.floor(this.avg_cookies_per_cust * random_customers);
+};
+
+seatac_store.calculate_cookies_sold_each_hour = function () {
+    for (var j = this.store_open; j < this.store_close; j++){
+        var cookies_sold = this.cookies_per_hour();
+        this.cookies_sold_each_hour.push(cookies_sold);
+    }
+    console.log(this);
+};
+
+seatac_store.render = function() {
+    var target = document.getElementById('store-container');
+
+    var li_el = document.createElement('li');
+    var h2_el = document.createElement('h2');
+    var ul_el = document.createElement('ul');
+
+    h2_el.textContent = this.store_name;
+
+    for (var j = 0; j < this.cookies_sold_each_hour.length; j++){
+        var hour_li_el = document.createElement('li')
+        hour_li_el.textContent = this.cookies_sold_each_hour[j];
+        ul_el.appendChild(hour_li_el);
+    } 
+    li_el.appendChild(h2_el);
+    li_el.appendChild(ul_el);
+    target.appendChild(li_el);
+};
+
+seatac_store.calculate_cookies_sold_each_hour();
+console.log(document);
+seatac_store.render();
