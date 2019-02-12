@@ -37,8 +37,8 @@ var pike_store = {
     max_cust: 65,
     avg_cookies_per_cust: 6.3,
     store_name: 'Salmon Cookies - Pike Place',
-    store_open: 8,
-    store_close: 19,
+    store_open: 6,
+    store_close: 20,//8pm
     cookies_sold_each_hour: []
 }
 
