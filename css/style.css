@@ -8,3 +8,11 @@ that that might look terrible. More CSS to come in later labs.
 #store-container {
     background-color: #ffdde4;
 }
+
+table {
+    padding: .3em;
+}
+
+td {
+    padding: .2em;
+}
