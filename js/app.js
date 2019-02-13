@@ -109,8 +109,8 @@ var seatac_store = {
     max_cust: 24,
     avg_cookies_per_cust: 1.2,
     store_name: 'Salmon Cookies - SeaTac Airport',
-    store_open: 8,
-    store_close: 19,
+    store_open: 6,
+    store_close: 20,
     cookies_sold_each_hour:[]
 }
 
