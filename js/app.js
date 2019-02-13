@@ -27,6 +27,8 @@ Store objects {
     render
 
 }
+
+IT's CONSTRUCTOR FUNCTION TIME NOW KIDS
 */
 //first object literal - Pike Place
 //this is the object everything we will be pulling from. "this.min_cust", when accessed from functions made
