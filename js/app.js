@@ -39,9 +39,9 @@ var pike_store = {
     store_name: 'Salmon Cookies - Pike Place',
     store_open: 6,
     store_close: 20,//8pm
-    cookies_sold_each_hour: []
+    cookies_sold_each_hour: [],
+    hour_list: []
 }
-
 
 //"this" refers back to parent element, pike_store in this case
 //calculates cookies sold per hour using Math.random function, which is stored above in my helper functions.
@@ -65,6 +65,31 @@ pike_store.calculate_cookies_sold_each_hour = function () {
     console.log(this);
 };
 
+/*Goal here is to put the store hours into an array the object can access, similar to the one for 
+cookies_sold_each_hour. This function is supposed to take tack on 1 hour to each hour open to close,
+and add them to an array, so the object can access it later, like it's done to get the list of cookies
+needed per day as an actual list. Debugger doesn't like this one, no matter where I put it. Leaving up
+so you can see train of thought.*/
+
+pike_store.list_store_hours = function(){
+    var hour_sum = 0;
+    for(i = this.store_open; i < this.store_close; i++){
+        hour_sum += hour_list[i];
+    }
+};
+
+/* this is supposed to take the numbers generated above, and push them into the store_hours array I made,
+so that the object can access it later on. Doesn't seem like this has worked, but it hasn't broken the code
+either. Leaving up for future inspiration, or so I can know if I'm on the wrong track with this style*/
+pike_store.store_hours_list = function () {
+    for (var i = this.store_open; i < this.store_close; i++){
+        var store_hours = this.list_store_hours();
+        this.hour_list.push(store_hours);
+    }
+  
+};
+
+
 //creates HTML elements and puts them on the page so we can manipulate them
 pike_store.render = function() {
     //li > h2 (name)> ul (store hours) > li (9 am; 30 cookies);
@@ -82,24 +107,51 @@ pike_store.render = function() {
     //starts for loop. Will keep going as long as i is short than the array length of cookies per hour
     //in this case, it will repeat for the hours the store is open, create a list item for each hour, and
     //add the data from cookies_sold_each_hour to that li as the child of a ul
+
+    //loop to add cookie number data
     for (var i = 0; i < this.cookies_sold_each_hour.length; i++){
-        var hour_li_el = document.createElement('li')
-        hour_li_el.textContent = this.cookies_sold_each_hour[i];    
-        ul_el.appendChild(hour_li_el);
+        var cookie_per_hour_li_el = document.createElement('li')
+        cookie_per_hour_li_el.textContent = this.cookies_sold_each_hour[i];    
+        ul_el.appendChild(cookie_per_hour_li_el);
     }
-    //this takes the elements we created before the for loop in this function and adds the html elements
-    //we need to make the list function as a nice list
+
+    /*loop to add hours open to visible list. Debugger shows j getting stuck at 0, but doesn't give me hints
+    as to why. This is supposed to take the hour_list array that I tried to building above, and feed into
+    this list containing cookie numbers. Can't get it printing, leaving up for review.*/
+    for(var j = 0; j < this.hour_list.length; j++){
+        var hour_list_li_el = document.createElement('li');
+        hour_list_li_el.textContent = this.hour_list[j];
+        ul_el.appendChild(hour_list_li_el);
+    }
+    //this takes the elements we created before the for loop in this function and
+    //adds the html elements. Makes the list into a list
     li_el.appendChild(h2_el); 
     li_el.appendChild(ul_el);
     target.appendChild(li_el);
-
 };
+
+
+ pike_store.calculate_sum = function(){
+    var sum = 0;
+   
+for (var i = 0; i < this.cookies_sold_each_hour.length; i++){
+    //need it to loop through cookies_sold_each_hour array and add those together
+    sum += this.cookies_sold_each_hour[i];
+}
+//logs cookie sum
+console.log(sum);
+}
+
+
+
+
 //runs the calculation function
 pike_store.calculate_cookies_sold_each_hour();
 
 //logs the html element structure we now have running through javacript
 console.log(document);
-
+//creates sum for cookies
+pike_store.calculate_sum();
 //shows everything on the page
 pike_store.render();
 
@@ -145,6 +197,18 @@ seatac_store.render = function() {
     li_el.appendChild(ul_el);
     target.appendChild(li_el);
 };
+
+seatac_store.calculate_sum = function(){
+    var sum = 0;
+   
+for (var i = 0; i < this.cookies_sold_each_hour.length; i++){
+    //need it to loop through cookies_sold_each_hour array and add those together
+    sum += this.cookies_sold_each_hour[i];
+}
+//this console won't log for some reason, even though the same one for pike_store will. Addition function
+//should still be working
+console.log(sum);
+}
 
 seatac_store.calculate_cookies_sold_each_hour();
 console.log(document);
