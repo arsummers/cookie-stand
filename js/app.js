@@ -21,14 +21,14 @@ var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_o
 };
 
 
-//got this printing, now I just need to make it into a table. Copy and pasted below in case it goes to shit
+//currently printing as a table, but not a very nice table
 var salmon_cookies_hours = {
     store_hour_name: 'Store Hours: ',
-    full_list: ['6 AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'],
+    full_list: ['6 AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM'],
     daily_total: 'Daily Location Total'
 }
 
-// gotta string it together
+// stringing the info from salmon_cookies_hours together
 salmon_cookies_hours.render = function (){
     var target = document.getElementById('store-table');
     //creates elements for the 'Store Hours' part of the object
@@ -44,9 +44,6 @@ salmon_cookies_hours.render = function (){
     hour_list_td.textContent = this.full_list;
     //creates "Daily Location Total" text
     daily_total_td.textContent = this.daily_total;
-
-    //SHOULD add text for daily total to end of the list of store hours - live server not working
-    //hour_list_td.appendChild(daily_total_td);
 
     //adds the list of hours next to "Store Name" text
     store_hour_name_row.appendChild(hour_list_td)
@@ -73,7 +70,7 @@ Salmon_cookies.prototype.cookies_per_hour = function() {
 //this uses elements from pike_store.cookies_per_hour function. The for loop tells the program how many hours
 //it needs to calculate for before terminating. cookies_sold takes in the number that cookies_per_hour generated
 Salmon_cookies.prototype.calculate_cookies_sold_each_hour = function () {
-    for (var i = 0; i < 15; i++){
+    for (var i = 0; i < 14; i++){
         var cookies_sold = this.cookies_per_hour();
     //takes the number generated above in cookies_sold and adds it to the cookies_sold_each_hour array in the object
         this.cookies_sold_each_hour.push(cookies_sold);
@@ -125,22 +122,18 @@ Salmon_cookies.prototype.render_all_stores = function(){
 
 
 //need this to add the stuff from the array it's iterating over somewhere
-//need some type of name[j]++ thing to happen
-    //}
    target.appendChild(store_row);
 
-//trying to get it to total all cookies per day. Can't get console to log anything. a debugger outside
-//the function shows it as calling on the info for Salmon_cookies, but a debugger inside the function
-//doesn't show anything. Too tired to add footer row for new stores right now.
-Salmon_cookies.prototype.calculate_total_cookies_sum = function() {
+   //trying to get total for all the salmon cookies per store
+
     var sum = 0;
     for(var i = 0; i < this.cookies_sold_each_hour.length; i++){
         sum += this.cookies_sold_each_hour[i];
     }
-    console.log(sum);
+    console.log(sum)
 }
 
-}
+
 
 for(var k = 0; k < all_stores.length; k++){
     all_stores[k].render_all_stores();
