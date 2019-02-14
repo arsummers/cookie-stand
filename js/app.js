@@ -24,28 +24,30 @@ var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_o
 //got this printing, now I just need to make it into a table. Copy and pasted below in case it goes to shit
 var salmon_cookies_hours = {
     store_hour_name: 'Store Hours: ',
-    full_list: ['Store Hours:', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8', 'Daily location total']
+    full_list: ['6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8'],
+    daily_total: 'Daily Location Total'
 }
 
+// gotta string it together
 salmon_cookies_hours.render = function (){
     var target = document.getElementById('store-table');
-    //create table elements
-    var hour_row = document.createElement('tr');
-    var store_hour_name_td = document.createElement('td');
-   // var ul_el = document.createElement('ul');
-
-    store_hour_name_td.textContent = this.full_list;
-    hour_row.appendChild(store_hour_name_td);
+    //creates elements for the 'Store Hours' part of the object
+    var store_hour_name_row = document.createElement('tr');
+    //creates elements for the list of hours
+    var hour_list_td = document.createElement('td');
+    //creates elements for location total part of object
+    store_hour_name_row.textContent = this.store_hour_name;
+   
+   //adds stuff from full_list portion of object to the store-table ID
+    hour_list_td.textContent = this.full_list;
+    store_hour_name_row.appendChild(hour_list_td);
 
     for (var i = 0; i < this.full_list.length; i++){
-        var store_hour_name_td = document.createElement('td');
-        hour_row.appendChild(store_hour_name_td);
+        var hour_list_td = document.createElement('td');
+        store_hour_name_row.appendChild(hour_list_td);
     }
-
-    target.appendChild(hour_row);
-    /*li_el.appendChild(h2_el);
-    li_el.appendChild(ul_el);
-    target.appendChild(li_el);*/
+    target.appendChild(store_hour_name_row);
+    //target.appendChild(hour_row);
 }
 
 salmon_cookies_hours.render();
