@@ -36,7 +36,7 @@ salmon_cookies_hours.render = function (){
     //creates elements for the list of hours
     var hour_list_td = document.createElement('td');
     //creates elements for "Daily Total"
-    var daily_total_td = document.createElement('td');
+    var daily_total_td = document.createElement('tr');
     
     //creates "Store Name" text
     store_hour_name_row.textContent = this.store_hour_name;
@@ -46,10 +46,12 @@ salmon_cookies_hours.render = function (){
     daily_total_td.textContent = this.daily_total;
 
     //SHOULD add text for daily total to end of the list of store hours - live server not working
-    hour_list_td.appendChild(daily_total_td);
+    //hour_list_td.appendChild(daily_total_td);
 
     //adds the list of hours next to "Store Name" text
-    store_hour_name_row.appendChild(hour_list_td);
+    store_hour_name_row.appendChild(hour_list_td)
+    store_hour_name_row.appendChild(daily_total_td);
+    //hour_list_td.appendChild(daily_total_td);
 
     for (var i = 0; i < this.full_list.length; i++){
         var hour_list_td = document.createElement('td');
