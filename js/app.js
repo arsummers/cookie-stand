@@ -8,7 +8,7 @@ var _random = function(min, max){
 //========================================
 //Starts constructor function. Acts similar to an object, in that I can call elements from it below, and feed
 //them to my specific objects. 
-var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_open, store_close, avg_cookies_per_cust, store_hours_list){
+var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_open, store_close, avg_cookies_per_cust, location_cookie_total){
     this.store_name = store_name;
     this.store_type = 'Salmon Cookies';
     this.location = location;
@@ -18,13 +18,14 @@ var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_o
     this.close_hour =store_close;
     this.cookies_sold_each_hour = [];
     this.avg_cookies_per_cust = avg_cookies_per_cust || 6.3;
+    this.location_cookie_total = [];
 };
 
 
 //got this printing, now I just need to make it into a table. Copy and pasted below in case it goes to shit
 var salmon_cookies_hours = {
     store_hour_name: 'Store Hours: ',
-    full_list: ['6 AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'],
+    full_list: ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'],
     daily_total: 'Daily Location Total'
 }
 
@@ -100,8 +101,6 @@ var all_stores = [pike_store, seatac_store, seattle_center_store, cap_hill_store
 Salmon_cookies.prototype.render_all_stores = function(){
 //want to be able to make this loop over the array of store name and print each one by calling
 
-   // for(var j = 0; j < all_stores.length; j++){
-        //debugger;
     //getting elements
      this.calculate_cookies_sold_each_hour();
      var target = document.getElementById('store-table');
@@ -110,36 +109,34 @@ Salmon_cookies.prototype.render_all_stores = function(){
      //creates <td></td>
      var name_td = document.createElement('td');
      //puts text into the tags
-     //bug lives here, only prints numbers and calculations from pike store, adds ten more to each 
+
      //store that comes after
      name_td.textContent = this.store_name;
 
      //adds <td> to <tr>
      store_row.appendChild(name_td);
 
-     //formatting is now weird on the pike place one_store_as_table
-
+     //adds table data for cookies_sold_each_hour
      var cookie_hour_td = document.createElement('td');
      cookie_hour_td.textContent = this.cookies_sold_each_hour;
      store_row.appendChild(cookie_hour_td); 
 
+ //sums up the total cookie number for each store. breaks if I move it above store_row.appendChild(name)
+  //something with a double for loop. will have to attach to list of hours object. Works and can access things
+  //because it lives in a Salmon_cookies.prototype. Breaks when I take it out of prototype.
+ var location_cookie_total = 0;
+   for(var i = 0; i < this.cookies_sold_each_hour.length; i++){
+       location_cookie_total += this.cookies_sold_each_hour[i];
+   }
 
-//need this to add the stuff from the array it's iterating over somewhere
-//need some type of name[j]++ thing to happen
-    //}
-   target.appendChild(store_row);
+   //meant to print total sum for each store, but doesn't right now
+   var cookie_total_td = document.createElement('td');
+   cookie_total_td.textContent = location_cookie_total;
+   //
+   store_row.appendChild(cookie_total_td);
 
-//trying to get it to total all cookies per day. Can't get console to log anything. a debugger outside
-//the function shows it as calling on the info for Salmon_cookies, but a debugger inside the function
-//doesn't show anything. Too tired to add footer row for new stores right now.
-Salmon_cookies.prototype.calculate_total_cookies_sum = function() {
-    var sum = 0;
-    for(var i = 0; i < this.cookies_sold_each_hour.length; i++){
-        sum += this.cookies_sold_each_hour[i];
-    }
-    console.log(sum);
-}
-
+    //adds store_row to the necessary part of the page
+    target.appendChild(store_row);
 }
 
 for(var k = 0; k < all_stores.length; k++){
@@ -165,13 +162,12 @@ button.addEventListener('click', handle_button_press);
 //gets the html form from the other page
 
 var form = document.getElementById('new-salmon-cookies');
-
 //is it best practice to match ip the variables on the left with the ones from my constructor function?
 
 form.addEventListener('submit', function(formSubmit){
     formSubmit.preventDefault();
     console.log(formSubmit);
-    console.log(formSubmit.target.salmonCookiesName.value);
+   // console.log(formSubmit.target.salmonCookiesName.value);
     var store_name = formSubmit.target.salmonCookiesName.value;
     var store_location = formSubmit.target.salmonCookiesLocation.value;
     var min_cust = formSubmit.target.salmonCookiesMinCust.value;
