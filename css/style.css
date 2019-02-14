@@ -5,7 +5,7 @@ I will add more things to the elements as I learn how to add css to javascript e
 As of right now, I would like to base the basic color scheme off the salmon picture itself, but I also recognize
 that that might look terrible. More CSS to come in later labs.
 */
-#store-container {
+#store-table {
     background-color: #ffdde4;
 }
 
