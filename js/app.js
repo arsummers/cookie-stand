@@ -24,7 +24,7 @@ var Salmon_cookies = function (store_name, location, min_cust, max_cust, store_o
 //got this printing, now I just need to make it into a table. Copy and pasted below in case it goes to shit
 var salmon_cookies_hours = {
     store_hour_name: 'Store Hours: ',
-    full_list: ['6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8'],
+    full_list: ['6 AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'],
     daily_total: 'Daily Location Total'
 }
 
@@ -73,12 +73,15 @@ Salmon_cookies.prototype.cookies_per_hour = function() {
 //this uses elements from pike_store.cookies_per_hour function. The for loop tells the program how many hours
 //it needs to calculate for before terminating. cookies_sold takes in the number that cookies_per_hour generated
 Salmon_cookies.prototype.calculate_cookies_sold_each_hour = function () {
-    for (var i = 0; i < 10; i++){
+    for (var i = 0; i < 15; i++){
         var cookies_sold = this.cookies_per_hour();
     //takes the number generated above in cookies_sold and adds it to the cookies_sold_each_hour array in the object
         this.cookies_sold_each_hour.push(cookies_sold);
     }
 };
+
+
+
 
 
 //instantiating area
@@ -125,47 +128,72 @@ Salmon_cookies.prototype.render_all_stores = function(){
 //need some type of name[j]++ thing to happen
     //}
    target.appendChild(store_row);
+
+//trying to get it to total all cookies per day. Can't get console to log anything. a debugger outside
+//the function shows it as calling on the info for Salmon_cookies, but a debugger inside the function
+//doesn't show anything. Too tired to add footer row for new stores right now.
+Salmon_cookies.prototype.calculate_total_cookies_sum = function() {
+    var sum = 0;
+    for(var i = 0; i < this.cookies_sold_each_hour.length; i++){
+        sum += this.cookies_sold_each_hour[i];
+    }
+    console.log(sum);
 }
 
-//store_hours_list.render_hour_list();
+}
 
 for(var k = 0; k < all_stores.length; k++){
     all_stores[k].render_all_stores();
 }
 
 
-//need toadd the sum function in a way that will print
+//need to add the sum function in a way that will print and console.log for testing. The loopy function above
+//should work for adding in new stores once I get the footer in for that
+
+/*ADDING FORMS*/
+//form bits added in index.html -- will the table to a sales file later
 
 
-/*prototype adds render function to constructor and new objects. Attaches methods to an object class.
-Now lives under the protoype Salmon_cookies. Think of prototype like a cloud attached to Salmon_cookies.
-
-copy of list containing hours that is capable of printing:
-var salmon_cookies_hours = {
-    full_list: ['Store Hours', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8', 'Daily location total']
+var button = document.getElementById('button-clicker');
+var handle_button_press = function(event){
+    alert('You have submitted cookies');
 }
 
-salmon_cookies_hours.render = function (){
-    var target = document.getElementById('store-table');
-    //create table elements
-    var li_el = document.createElement('li');
-    var h2_el = document.createElement('h2');
-    var ul_el = document.createElement('ul');
+//button clicker alert works. Not set to log anything yet though.
+button.addEventListener('click', handle_button_press);
 
-    h2_el.textContent = this.full_list;
+//gets the html form from the other page
 
-    for (var i = 0; i < this.full_list.length; i++){
-        var hour_li_el = document.createElement('li');
-        //not recognized as a function, breaks loop
-        //hour_li_el.textContent(this.full_list[i]);
-        ul_el.appendChild(hour_li_el);
-    }
-    li_el.appendChild(h2_el);
-    li_el.appendChild(ul_el);
-    target.appendChild(li_el);
-}
+var form = document.getElementById('new-salmon-cookies');
 
-salmon_cookies_hours.render();
+//is it best practice to match ip the variables on the left with the ones from my constructor function?
 
-*/
+form.addEventListener('submit', function(formSubmit){
+    formSubmit.preventDefault();
+    console.log(formSubmit);
+    console.log(formSubmit.target.salmonCookiesName.value);
+    var store_name = formSubmit.target.salmonCookiesName.value;
+    var store_location = formSubmit.target.salmonCookiesLocation.value;
+    var min_cust = formSubmit.target.salmonCookiesMinCust.value;
+    var max_cust = formSubmit.target.salmonCookiesMaxCust.value;
+    var store_open = formSubmit.target.salmonCookiesOpen.value;
+    var store_close = formSubmit.target.salmonCookiesClose.value;
+    var sold_each_hour = formSubmit.target.salmonCookiesSoldHour.value;
+    var avg_cookie_order = formSubmit.target.salmonCookiesPerCust.value;
 
+    console.log({
+        salmonCookiesName : store_name,
+        salmonCookiesLocation : store_location,
+        salmonCookiesMinCust : min_cust,
+        salmonCookiesMaxCust : max_cust,
+        salmonCookiesOpen : store_open,
+        salmonCookiesClose : store_close,
+        salmonCookiesSoldHour : sold_each_hour,
+        salmonCookiesPerCust : avg_cookie_order
+    });
+});
+
+
+
+//not getting it to print to the console just yet. problem for when I'm fresher. Has logged one input so far, but
+//hasn't logged others when I refreshed the live-server
