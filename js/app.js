@@ -35,11 +35,20 @@ salmon_cookies_hours.render = function (){
     var store_hour_name_row = document.createElement('tr');
     //creates elements for the list of hours
     var hour_list_td = document.createElement('td');
-    //creates elements for location total part of object
+    //creates elements for "Daily Total"
+    var daily_total_td = document.createElement('td');
+    
+    //creates "Store Name" text
     store_hour_name_row.textContent = this.store_hour_name;
-   
-   //adds stuff from full_list portion of object to the store-table ID
+    //creates text for store hours
     hour_list_td.textContent = this.full_list;
+    //creates "Daily Location Total" text
+    daily_total_td.textContent = this.daily_total;
+
+    //SHOULD add text for daily total to end of the list of store hours - live server not working
+    hour_list_td.appendChild(daily_total_td);
+
+    //adds the list of hours next to "Store Name" text
     store_hour_name_row.appendChild(hour_list_td);
 
     for (var i = 0; i < this.full_list.length; i++){
@@ -123,7 +132,7 @@ for(var k = 0; k < all_stores.length; k++){
 }
 
 
-//need to make hours from list into table stuff, and add the sum function in a way that will print
+//need toadd the sum function in a way that will print
 
 
 /*prototype adds render function to constructor and new objects. Attaches methods to an object class.
