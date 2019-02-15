@@ -1,18 +1,13 @@
 
-/*This weird salmony color probably won't be in my final iteration of this project. I've attached it to
-store-container so I can get a sense of where the box for it lives in relation to the rest of the page.
-I will add more things to the elements as I learn how to add css to javascript elements rather than css.
-As of right now, I would like to base the basic color scheme off the salmon picture itself, but I also recognize
-that that might look terrible. More CSS to come in later labs.
+
+/* Here's the basic colors I want to use
+
+
+
+styling to-do:
+make index nice
+use every pic from assets
+apply similar style to sales.html
+wireframe wireframe wireframe
 */
-#store-table {
-    background-color: #ffdde4;
-}
 
-table {
-    padding: .3em;
-}
-
-td {
-    padding: .3em;
-}
