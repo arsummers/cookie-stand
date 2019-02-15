@@ -2,7 +2,11 @@
 
 /* Here's the basic colors I want to use
 
-
+#C4DBF4 //very pale  blue
+#305474 // dark greyish blue
+#F0C162 //gold
+#F25C36 //muted red
+#F2F1F5 // pale gray -- good overall background color
 
 styling to-do:
 make index nice
@@ -11,3 +15,128 @@ apply similar style to sales.html
 wireframe wireframe wireframe
 */
 
+
+*{
+    line-height: 100%;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F2F1F5;
+}
+/* shows header box */
+header {
+    height: 150px;
+    background:#F0C162; 
+    margin-bottom: 1.3em;
+    border-radius: 10px;
+}
+
+
+header div {
+    max-width: 960px;
+    margin: auto;
+}
+
+
+header img {
+    display: inline-block;
+    margin: 12.5px 60px 12.5px 0px;
+
+}
+
+header nav {
+    display: inline-block;
+    margin: 12.5px 0px;
+    height: 70px;
+    vertical-align: top;
+}
+
+nav ul {
+    height: 170px;
+    margin: 12.5px 0px;
+}
+
+nav li {
+    display: inline-block;
+    line-height: 70px;
+    margin-right: 60px;
+}
+
+main {
+    max-width: 960px;
+    margin: 0px auto 30px;
+    min-width: 960px;
+}
+
+main > img:first-child{
+    margin-bottom: 30px;
+}
+
+main > ul > li {
+    float: left;
+    margin-right: 30px;
+}
+
+main > ul > li:nth-child(3){
+    margin-right: 0;
+}
+
+main > ul {
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+article {
+    overflow: hidden;
+}
+
+article > img {
+    float: left;
+}
+
+article > section {
+    float: left;
+    width: 480px;
+    padding-left: 30px;
+}
+
+h3 {
+    font-size: 1.4em;
+    font-weight: medium;
+    margin-bottom: 7px;
+}
+
+article p {
+    font-size: 1.2em;
+    font-style: italic;
+    line-height: 1.3em;
+    overflow: auto;
+    height: 340px;
+    margin-bottom: 7px;
+}
+
+button {
+    width: 250px;
+    background: #305474;
+    color: white;
+    font-size: 1.2em;
+    font-weight: medium;
+    border-radius: 0;
+    height: 2em;
+}
+
+button > a {
+    color: #F2F1F5;
+}
+button:hover{
+    color: black;
+    transition-duration: 350ms;
+    background-color: red;
+}
+
+footer {
+    height: 95px;
+    background-color: #F0C162;
+    border-radius: 10px;
+}
