@@ -5,4 +5,4 @@ The code for branches 1 and 2 comes from following along in Nicholas Carignan's 
 
 Have had lots of help getting javascript to work right.
 
-Wireframe is adapted from class demo.
+Wireframe is adapted from class demo, still a work in progress
