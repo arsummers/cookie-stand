@@ -13,15 +13,22 @@ Color scheme:
 }
 #store-table {
     background-color:  #F0C162;
+
 }
 
 table {
     padding: .3em; 
     border-radius: 10px;
+    table-layout: fixed;
+    border: 2px groove  #305474;
 }
 
+col {
+    border: 2px groove #305474;
+}
 tr {
-    border-style: groove;
+     border: 2px groove #305474;
+
 }
 
 td {

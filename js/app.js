@@ -13,10 +13,10 @@ var Salmon_cookies = function(store_name, location, min_cust, max_cust, store_op
   this.store_name = store_name;
   this.store_type = 'Salmon Cookies';
   this.location = location;
-  this.min_cust = min_cust;
-  this.max_cust = max_cust;
-  this.open_hour = store_open;
-  this.close_hour = store_close;
+  this.min_cust = min_cust || 2;
+  this.max_cust = max_cust || 7;
+  this.open_hour = store_open || 6;
+  this.close_hour = store_close || 20;
   this.cookies_sold_each_hour = [];
   this.avg_cookies_per_cust = avg_cookies_per_cust || 6.3;
 };
@@ -26,8 +26,8 @@ var salmon_cookies_hours_list =[
   'Store Hours: ', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', 'Daily Location Total'
 ];
 
-//I have an equation near the end of this section that pushes the total for each hour into this array, and another adding up each part
-//of this array.
+//I have an equation near the end of this section that pushes the total for each hour into this array,
+//and another adding up each part of this array to give me the number of cookies the entire company will sell daily.
 var daily_cookie_total = [];
 
 // puts the table of hours together
@@ -98,6 +98,8 @@ Salmon_cookies.prototype.render_all_stores = function() {
   //getting elements
   this.calculate_cookies_sold_each_hour();
   var target = document.getElementById('store-table');
+  //creats column for styling purposes
+  var hour_col = document.createElement('col');
   //creates <tr></tr>
   var store_row = document.createElement('tr');
   //creates <td></td>
@@ -119,8 +121,9 @@ Salmon_cookies.prototype.render_all_stores = function() {
     cookie_hour_td.textContent = this.cookies_sold_each_hour[i];
     store_row.appendChild(cookie_hour_td);
   }
+  target.appendChild(hour_col);
   target.appendChild(store_row);
- 
+
   //sums up the total cookie number for each store. breaks if I move it above store_row.appendChild(name)
   //something with a double for loop. will have to attach to list of hours object. Works and can access things
   //because it lives in a Salmon_cookies.prototype. Breaks when I take it out of prototype.
@@ -172,11 +175,6 @@ var render_hourly_totals = function() {
   target.appendChild(word_total_row);
 
   //the values for daily_sum live in the array named daily_cookie_total
-  for (var q = 0; q < 1; q++){
-    var daily_sum = 0;
-    daily_sum += daily_cookie_total;
-  }
-
   //adds up the numbers in the daily_cookie_total array.
   var final_cookie_sum = 0;
   for(var f = 0; f < 14; f++){
@@ -192,41 +190,68 @@ var render_hourly_totals = function() {
 render_hourly_totals();
 
 
-
-//Need to just add daily location total together and append to the footer of the table
-
-
-
-
-
-/*ADDING FORMS*/
-//form bits added in index.html -- will the table to a sales file later
-
+//ADDING FORMS
 //gets the html form from the other page
-var form = document.getElementById('new-salmon-cookies');
-//is it best practice to match ip the variables on the left with the ones from my constructor function?
+var new_store_form = document.getElementById('new-salmon-cookies');
 
-form.addEventListener('submit', function(formSubmit) {
+new_store_form.addEventListener('submit', function(formSubmit) {
+
   formSubmit.preventDefault();
-  console.log(formSubmit);
+  //console.log(formSubmit);
   // console.log(formSubmit.target.salmonCookiesName.value);
   var store_name = formSubmit.target.salmonCookiesName.value;
-  var store_location = formSubmit.target.salmonCookiesLocation.value;
+  var location = formSubmit.target.salmonCookiesLocation.value;
   var min_cust = formSubmit.target.salmonCookiesMinCust.value;
   var max_cust = formSubmit.target.salmonCookiesMaxCust.value;
-  var store_open = formSubmit.target.salmonCookiesOpen.value;
-  var store_close = formSubmit.target.salmonCookiesClose.value;
-  var sold_each_hour = formSubmit.target.salmonCookiesSoldHour.value;
-  var avg_cookie_order = formSubmit.target.salmonCookiesPerCust.value;
+  // var store_open = formSubmit.target.salmonCookiesOpen.value;
+  // var store_close = formSubmit.target.salmonCookiesClose.value;
+  //var sold_each_hour = formSubmit.target.salmonCookiesSoldHour.value;
+  var avg_cookies_per_cust = formSubmit.target.salmonCookiesPerCust.value;
 
-  console.log({
+  new Salmon_cookies(store_name, location, min_cust, max_cust, avg_cookies_per_cust);
+
+  //adds input to page, but not doing it right yet.
+  var target = document.getElementById('store-table');
+  var new_store_tr = document.createElement('tr');
+  target.appendChild(new_store_tr);
+  //creates td for input
+  var new_store_td = document.createElement('td');
+  new_store_td.textContent = store_name;
+  new_store_tr.appendChild(new_store_td);
+
+  //only prints what I put into the form. Doesn't link it up with my constructor function, and I'm not sure how to make
+  //it do so. Leaving this up here to show that I can get it to print something to the page, even though I haven't been
+  //about to link new input to my random number based equations.
+  new_store_td = document.createElement('td');
+  new_store_td.textContent = location;
+  new_store_tr.appendChild(new_store_td);
+
+  new_store_td = document.createElement('td');
+  new_store_td.textContent = 'mininum customers: ' + min_cust;
+  new_store_tr.appendChild(new_store_td);
+
+  new_store_td = document.createElement('td');
+  new_store_td.textContent = 'maximum customers: ' + max_cust;
+  new_store_tr.appendChild(new_store_td);
+
+  new_store_td = document.createElement('td');
+  new_store_td.textContent = 'Average order size: ' + avg_cookies_per_cust;
+  new_store_tr.appendChild(new_store_td);
+
+  /*console.log({
     salmonCookiesName: store_name,
-    salmonCookiesLocation: store_location,
+    salmonCookiesLocation: location,
     salmonCookiesMinCust: min_cust,
     salmonCookiesMaxCust: max_cust,
-    salmonCookiesOpen: store_open,
-    salmonCookiesClose: store_close,
-    salmonCookiesSoldHour: sold_each_hour,
-    salmonCookiesPerCust: avg_cookie_order
-  });
+    // salmonCookiesOpen: store_open,
+    // salmonCookiesClose: store_close,
+    //salmonCookiesSoldHour: sold_each_hour,
+    salmonCookiesPerCust: avg_cookies_per_cust
+
+  });*/
 });
+
+//now I need to be get the form to fill onto the page. Duckett has answers? should be able to get it to move into
+//all_stores array, which would allow the function that prints everything to take care of it. form.push(all_stores)
+// do something with new Salmon_cookies. Need to get it so that something from the form adds to the constructor function
+//I just want this to make new salmon cookies why is that hard. USE YOUR PROTOTYPES
