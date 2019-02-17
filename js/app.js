@@ -8,15 +8,7 @@ var _random = function(min, max) {
 //========================================
 //Starts constructor function. Acts similar to an object, in that I can call elements from it below, and feed
 //them to my specific objects.
-var Salmon_cookies = function(
-  store_name,
-  location,
-  min_cust,
-  max_cust,
-  store_open,
-  store_close,
-  avg_cookies_per_cust,
-  location_cookie_total
+var Salmon_cookies = function(store_name, location, min_cust, max_cust, store_open, store_close, avg_cookies_per_cust
 ) {
   this.store_name = store_name;
   this.store_type = 'Salmon Cookies';
@@ -27,17 +19,19 @@ var Salmon_cookies = function(
   this.close_hour = store_close;
   this.cookies_sold_each_hour = [];
   this.avg_cookies_per_cust = avg_cookies_per_cust || 6.3;
-  this.location_cookie_total = [];
 };
 
-//got this printing, now I just need to make it into a table. Copy and pasted below in case it goes to shit
+//Prints as a header above the table of necessary cookie numbers
 var salmon_cookies_hours_list =[
   'Store Hours: ', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', 'Daily Location Total'
-  //makle header row, loop though array, cycle through hours and append the hour string as it's own td
 ];
 
-// gotta string it together
-var render = function() {
+//I have an equation near the end of this section that pushes the total for each hour into this array, and another adding up each part
+//of this array.
+var daily_cookie_total = [];
+
+// puts the table of hours together
+var render_store_hours = function() {
   var target = document.getElementById('store-table');
   //creates elements for the 'Store Hours' part of the object
   var store_hour_name_row = document.createElement('tr');
@@ -52,10 +46,10 @@ var render = function() {
   target.appendChild(store_hour_name_row);
 };
 
+render_store_hours();
 
-render();
 //takes the math to calculate the cookies needed per hour from my basic objects lab. Reads the values
-//assigned to different stores below. prototype sayds that is wants the method on the right to be associated
+//assigned to different stores below. prototype says that is wants the method on the right to be associated
 //object on the left
 Salmon_cookies.prototype.cookies_per_hour = function() {
   var random_customers = Math.floor(_random(this.min_cust, this.max_cust));
@@ -65,7 +59,7 @@ Salmon_cookies.prototype.cookies_per_hour = function() {
 //this uses elements from pike_store.cookies_per_hour function. The for loop tells the program how many hours
 //it needs to calculate for before terminating. cookies_sold takes in the number that cookies_per_hour generated
 Salmon_cookies.prototype.calculate_cookies_sold_each_hour = function() {
-  for (var i = 0; i < 15; i++) {
+  for (var i = 0; i < 14; i++) {
     var cookies_sold = this.cookies_per_hour();
     //takes the number generated above in cookies_sold and adds it to the cookies_sold_each_hour array in the object
     this.cookies_sold_each_hour.push(cookies_sold);
@@ -95,11 +89,7 @@ var alki_store = new Salmon_cookies(
 //creates an array for a for loop to iterate over. Will pull info from instantiating area
 
 var all_stores = [
-  pike_store,
-  seatac_store,
-  seattle_center_store,
-  cap_hill_store,
-  alki_store
+  pike_store, seatac_store, seattle_center_store, cap_hill_store, alki_store
 ];
 
 Salmon_cookies.prototype.render_all_stores = function() {
@@ -139,7 +129,7 @@ Salmon_cookies.prototype.render_all_stores = function() {
     location_cookie_total += this.cookies_sold_each_hour[i];
   }
 
-  //meant to print total sum for each store, but doesn't right now
+  //adds the cookie table to the page
   var cookie_total_td = document.createElement('td');
   cookie_total_td.textContent = location_cookie_total;
   //
@@ -153,12 +143,7 @@ for (var k = 0; k < all_stores.length; k++) {
   all_stores[k].render_all_stores();
 }
 
-//add footer for total number of stores down here, that grabs the totals from each indiviual hour the stores are open
-//footer first, math later. loop over blank array???
-
-// var hour_totals_footer = {
-//   word_total : 'Total: ',
-//   total_space : 'total goes here'};
+//function to print the hourly totals for under each cookie
 
 var render_hourly_totals = function() {
   //want it to run after evertything else has run
@@ -170,27 +155,47 @@ var render_hourly_totals = function() {
   total_space_td.textContent = 'Totals: ';
   word_total_row.appendChild(total_space_td);
 
-  //one for loop to iterate the number of hours. Loop inside that to loop through the stores at that hour
-
+  //one for loop to iterate the number of hours. Loop inside that to add the stores at that hour
   for (var i = 0; i < 14; i++) {
     var sum_each_hour = 0;
     for (var j = 0; j < all_stores.length; j++) {
       sum_each_hour += all_stores[j].cookies_sold_each_hour[i];
-      console.log(sum_each_hour);
     }
+    //pushes first 14 numbers generated into an array so I can add the array up for my final total
+    daily_cookie_total.push(sum_each_hour);
+
+    //prints calculations from sum_each_hour to page
     total_space_td = document.createElement('td');
     total_space_td.textContent = sum_each_hour;
     word_total_row.appendChild(total_space_td);
   }
   target.appendChild(word_total_row);
-  //   word_total_row.textContent = this.word_total;
-  //   total_space_td.textContent = this.total_space;
 
-  //   word_total_row.appendChild(total_space_td);
-  //   target.appendChild(word_total_row);
+  //the values for daily_sum live in the array named daily_cookie_total
+  for (var q = 0; q < 1; q++){
+    var daily_sum = 0;
+    daily_sum += daily_cookie_total;
+  }
+  //logs array displaying each value of sum_each_hour
+  //console.log(daily_sum);
+
+  var final_cookie_sum = 0;
+  for(var f = 0; f < 14; f++){
+    final_cookie_sum += daily_cookie_total[f];
+  }
+  console.log(final_cookie_sum);
+
 };
 
 render_hourly_totals();
+
+
+
+//Need to just add daily location total together and append to the footer of the table
+
+
+
+
 
 /*ADDING FORMS*/
 //form bits added in index.html -- will the table to a sales file later
