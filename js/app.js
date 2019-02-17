@@ -176,15 +176,17 @@ var render_hourly_totals = function() {
     var daily_sum = 0;
     daily_sum += daily_cookie_total;
   }
-  //logs array displaying each value of sum_each_hour
-  //console.log(daily_sum);
 
+  //adds up the numbers in the daily_cookie_total array.
   var final_cookie_sum = 0;
   for(var f = 0; f < 14; f++){
     final_cookie_sum += daily_cookie_total[f];
   }
-  console.log(final_cookie_sum);
 
+  //prints company-wide daily cookie amount to page
+  var final_cookie_sum_td = document.createElement('td');
+  final_cookie_sum_td.textContent = final_cookie_sum;
+  word_total_row.appendChild(final_cookie_sum_td);
 };
 
 render_hourly_totals();
