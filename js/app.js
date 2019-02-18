@@ -35,6 +35,7 @@ var render_store_hours = function() {
   var target = document.getElementById('store-table');
   //creates elements for the 'Store Hours' part of the object
   var store_hour_name_row = document.createElement('tr');
+  //creates <tr></tr>
   //creates elements for the list of hours
   var hour_list_td = document.createElement('td');
 
@@ -98,8 +99,6 @@ Salmon_cookies.prototype.render_all_stores = function() {
   //getting elements
   this.calculate_cookies_sold_each_hour();
   var target = document.getElementById('store-table');
-  //creats column for styling purposes
-  var hour_col = document.createElement('col');
   //creates <tr></tr>
   var store_row = document.createElement('tr');
   //creates <td></td>
@@ -121,7 +120,6 @@ Salmon_cookies.prototype.render_all_stores = function() {
     cookie_hour_td.textContent = this.cookies_sold_each_hour[i];
     store_row.appendChild(cookie_hour_td);
   }
-  target.appendChild(hour_col);
   target.appendChild(store_row);
 
   //sums up the total cookie number for each store. breaks if I move it above store_row.appendChild(name)

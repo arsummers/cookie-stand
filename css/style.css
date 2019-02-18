@@ -25,21 +25,56 @@ body{
     background-color: #F2F1F5;
 }
 /* shows header box */
+/* 
 header {
     height: 150px;
     background:#F0C162; 
     margin-bottom: 1.3em;
     border-radius: 10px;
+    z-index: -1;
+} */
+
+#cut-out-salmon{
+    transform: rotate(75deg);
+    float: right;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+#cut-out-salmon-2{
+    transform: rotate(175deg);
+    float: right;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
 }
 
+button {
+    width: 250px;
+    background: #305474;
+    color: white;
+    font-size: 1.2em;
+    font-weight: medium;
+    border-radius: 0;
+    height: 2em;
+    z-index: 1;
+}
 
-header div {
+button > a {
+    color: #F2F1F5;
+}
+button:hover{
+    color: black;
+    transition-duration: 350ms;
+    background-color: red;
+}
+ header div {
     max-width: 960px;
     margin: auto;
 }
 
 
-header img {
+ header img {
     display: inline-block;
     margin: 12.5px 60px 12.5px 0px;
 
@@ -50,6 +85,7 @@ header nav {
     margin: 12.5px 0px;
     height: 70px;
     vertical-align: top;
+    background: #F0C162;
 }
 
 nav ul {
@@ -62,7 +98,7 @@ nav li {
     line-height: 70px;
     margin-right: 60px;
 }
-
+/* 
 main {
     max-width: 960px;
     margin: 0px auto 30px;
@@ -114,29 +150,10 @@ article p {
     overflow: auto;
     height: 340px;
     margin-bottom: 7px;
-}
-
-button {
-    width: 250px;
-    background: #305474;
-    color: white;
-    font-size: 1.2em;
-    font-weight: medium;
-    border-radius: 0;
-    height: 2em;
-}
-
-button > a {
-    color: #F2F1F5;
-}
-button:hover{
-    color: black;
-    transition-duration: 350ms;
-    background-color: red;
-}
-
+} */
+/* 
 footer {
     height: 95px;
     background-color: #F0C162;
     border-radius: 10px;
-}
+} */
