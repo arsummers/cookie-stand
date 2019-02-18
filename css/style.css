@@ -23,41 +23,38 @@ wireframe wireframe wireframe
 
 body{
     background-color: #F2F1F5;
+    margin: 20px 100px 20px 100px;
 }
-/* shows header box */
-/* 
-header {
-    height: 150px;
-    background:#F0C162; 
-    margin-bottom: 1.3em;
-    border-radius: 10px;
-    z-index: -1;
-} */
 
-#cut-out-salmon{
-    transform: rotate(75deg);
-    float: right;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
+h1{
+    font-size: 30px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color: #F0C162;
+    margin: 2% 50% 2% 20%;
+    border: 3px solid #305474;
+    border-radius: 15px;
+    padding: 1%;
+    background: #374a68;
 }
-#cut-out-salmon-2{
-    transform: rotate(175deg);
-    float: right;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
+.cut-out-salmon{
+    width: 10%;
+    height: auto;
+    transform: rotate(10deg);
+    left: 0%;
+    top: 0%;
 }
+
 
 button {
-    width: 250px;
+    width: 100%;
     background: #305474;
     color: white;
     font-size: 1.2em;
     font-weight: medium;
-    border-radius: 0;
-    height: 2em;
-    z-index: 1;
+    border-radius: 15px;
+    padding: 5%;
+    height: 200%;
 }
 
 button > a {
@@ -70,19 +67,13 @@ button:hover{
 }
  header div {
     max-width: 960px;
+    min-width: 200px;
     margin: auto;
-}
-
-
- header img {
-    display: inline-block;
-    margin: 12.5px 60px 12.5px 0px;
-
 }
 
 header nav {
     display: inline-block;
-    margin: 12.5px 0px;
+    margin: 2% 0%;
     height: 70px;
     vertical-align: top;
     background: #F0C162;
@@ -90,7 +81,8 @@ header nav {
 
 nav ul {
     height: 170px;
-    margin: 12.5px 0px;
+    margin: 3% 0%;
+    display: inline-block;
 }
 
 nav li {
@@ -98,62 +90,57 @@ nav li {
     line-height: 70px;
     margin-right: 60px;
 }
-/* 
+
 main {
     max-width: 960px;
     margin: 0px auto 30px;
     min-width: 960px;
+    float: right;
 }
 
-main > img:first-child{
-    margin-bottom: 30px;
+h2{
+    font-size: 20px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color:#F0C162;
+    margin: 1% 80% 1% 1%;
+    border: 3px solid #305474;
+    border-radius: 15px;
+    padding: 2%;
+    background: #374a68;
+}
+#family{
+    width: 20%;
+    height: auto;
+    float: right;
 }
 
-main > ul > li {
-    float: left;
-    margin-right: 30px;
+article{
+    width: 875px;
+    height: 300px;
+    overflow: scroll;
+    background: #C4DBF4;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-indent: 5%;
+    color: #305474;
+    float: right;
+    padding: 5%;
+    border-radius: 20px;
 }
 
-main > ul > li:nth-child(3){
-    margin-right: 0;
+#salmon-cookie{
+    float: right;
 }
 
-main > ul {
-    margin-bottom: 30px;
-    overflow: hidden;
-}
-
-article {
-    overflow: hidden;
-}
-
-article > img {
-    float: left;
-}
-
-article > section {
-    float: left;
-    width: 480px;
-    padding-left: 30px;
-}
-
-h3 {
-    font-size: 1.4em;
-    font-weight: medium;
-    margin-bottom: 7px;
-}
-
-article p {
-    font-size: 1.2em;
-    font-style: italic;
-    line-height: 1.3em;
-    overflow: auto;
-    height: 340px;
-    margin-bottom: 7px;
-} */
-/* 
-footer {
-    height: 95px;
-    background-color: #F0C162;
+figcaption{
+    background: #305474;
+    color: #F2F1F5;
     border-radius: 10px;
-} */
+    padding: 2%;
+    border: 5px solid #F0C162;
+    margin: 10px 30% 10px 10px;
+}
+.page-pic{
+    border-radius: 20px;
+    border: 3px ridge #305474;
+}
