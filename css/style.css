@@ -55,6 +55,7 @@ button {
     border-radius: 15px;
     padding: 5%;
     height: 200%;
+    float: left;
 }
 
 button > a {
@@ -93,9 +94,10 @@ nav li {
 
 main {
     max-width: 960px;
-    margin: 0px auto 30px;
+    margin: 0% auto 30px;
     min-width: 960px;
-    float: right;
+    z-index: -1;
+    /* float: right; */
 }
 
 h2{
