@@ -1,18 +1,155 @@
 
-/*This weird salmony color probably won't be in my final iteration of this project. I've attached it to
-store-container so I can get a sense of where the box for it lives in relation to the rest of the page.
-I will add more things to the elements as I learn how to add css to javascript elements rather than css.
-As of right now, I would like to base the basic color scheme off the salmon picture itself, but I also recognize
-that that might look terrible. More CSS to come in later labs.
+
+/* Here's the basic colors I want to use
+
+#C4DBF4 //very pale  blue
+#305474 // dark greyish blue
+#F0C162 //gold
+#F25C36 //muted red
+#F2F1F5 // pale gray -- good overall background color
+
+styling to-do:
+make index nice
+use every pic from assets
+apply similar style to sales.html
+wireframe wireframe wireframe
 */
-#store-table {
-    background-color: #ffdde4;
+
+
+*{
+    line-height: 100%;
+    box-sizing: border-box;
 }
 
-table {
-    padding: .3em;
+body{
+    background-color: #F2F1F5;
+    margin: 20px 100px 20px 100px;
 }
 
-td {
-    padding: .3em;
+h1{
+    font-size: 150%;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color: #F0C162;
+    margin: 2% 50% 2% 20%;
+    border: 3px solid #305474;
+    border-radius: 15px;
+    padding: 1%;
+    background: #374a68;
+}
+.cut-out-salmon{
+    width: 10%;
+    height: auto;
+    transform: rotate(10deg);
+    left: 0%;
+    top: 0%;
+}
+
+
+button {
+    width: 100%;
+    background: #305474;
+    color: white;
+    font-size: 1.2em;
+    font-weight: medium;
+    border-radius: 15px;
+    padding: 5%;
+    height: 200%;
+    float: left;
+}
+
+#sales{
+    background: #F0C162;
+    position: fixed;
+    top: 70%;
+    left: 100px;
+}
+
+button > a {
+    color: #F2F1F5;
+}
+button:hover{
+    color: black;
+    transition-duration: 350ms;
+    background-color: red;
+}
+ header div {
+    max-width: 960px;
+    min-width: 200px;
+    margin: auto;
+}
+
+header nav {
+    display: inline-block;
+    margin: 2% 0%;
+    height: 70px;
+    vertical-align: top;
+    background: #F0C162;
+}
+
+nav ul {
+    height: 170px;
+    margin: 3% 0%;
+    display: inline-block;
+}
+
+nav li {
+    display: inline-block;
+    line-height: 70px;
+    margin-right: 60px;
+}
+
+main {
+    max-width: 960px;
+    margin: 0% auto 30px;
+    min-width: 960px;
+    z-index: -1;
+    float: right;
+}
+
+h2{
+    font-size: 20px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color:#F0C162;
+    margin: 1% 80% 1% 1%;
+    border: 3px solid #305474;
+    border-radius: 15px;
+    padding: 2%;
+    background: #374a68;
+}
+#family{
+    width: 20%;
+    height: auto;
+    float: right;
+}
+
+article{
+    width: 875px;
+    height: 300px;
+    overflow: scroll;
+    background: #C4DBF4;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-indent: 5%;
+    color: #305474;
+    float: right;
+    padding: 5%;
+    border-radius: 20px;
+}
+
+#salmon-cookie{
+    float: right;
+}
+
+figcaption{
+    background: #305474;
+    color: #F2F1F5;
+    border-radius: 10px;
+    padding: 2%;
+    border: 5px solid #F0C162;
+    margin: 10px 30% 10px 10px;
+}
+.page-pic{
+    border-radius: 20px;
+    border: 3px ridge #305474;
 }

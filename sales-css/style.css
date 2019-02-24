@@ -1,0 +1,53 @@
+
+/*
+Color scheme:
+#C4DBF4 //very pale  blue
+#305474 // dark greyish blue
+#F0C162 //gold
+#F25C36 //muted red
+#F2F1F5 // pale gray -- good overall background color
+*/
+
+*{
+    background: #F2F1F5  
+}
+#store-table {
+    background-color:  #F0C162;
+
+}
+
+table {
+    border-radius: 10px;
+    padding: .3em; 
+    table-layout: fixed;
+}
+
+td {
+    padding: .75em;
+    background: #F0C162;
+    color: #305474;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: 5px double #305474;
+}
+
+label{
+    display: inline-block;
+    border: 5px double #305474;
+    background: #F0C162;
+    color: #305474;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.input-to-change{
+    display: inline-block;
+    background: #C4DBF4;
+}
+
+#submit-button{
+    background-color: #F25C36;
+    color: #C4DBF4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
