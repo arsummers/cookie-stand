@@ -27,7 +27,7 @@ body{
 }
 
 h1{
-    font-size: 30px;
+    font-size: 150%;
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
     color: #F0C162;
@@ -56,6 +56,13 @@ button {
     padding: 5%;
     height: 200%;
     float: left;
+}
+
+#sales{
+    background: #F0C162;
+    position: fixed;
+    top: 70%;
+    left: 100px;
 }
 
 button > a {
@@ -97,7 +104,7 @@ main {
     margin: 0% auto 30px;
     min-width: 960px;
     z-index: -1;
-    /* float: right; */
+    float: right;
 }
 
 h2{

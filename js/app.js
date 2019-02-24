@@ -26,12 +26,6 @@ var Salmon_cookies = function(store_name, location, min_cust, max_cust, avg_cook
   all_stores.push(this);
 };
 
-//Prints as a header above the table of necessary cookie numbers
-
-//I have an equation near the end of this section that pushes the total for each hour into this array,
-//and another adding up each part of this array to give me the number of cookies the entire company will sell daily.
-
-
 // puts the table of hours together
 var render_store_hours = function() {
   var target = document.getElementById('store-table');
@@ -90,10 +84,6 @@ var alki_store = new Salmon_cookies(
 );
 
 //creates an array for a for loop to iterate over. Will pull info from instantiating area
-
-// var all_stores = [
-//   pike_store, seatac_store, seattle_center_store, cap_hill_store, alki_store
-// ];
 
 Salmon_cookies.prototype.render_all_stores = function() {
   //want to be able to make this loop over the array of store name and print each one by calling
@@ -197,10 +187,7 @@ render_hourly_totals();
 var new_store_form = document.getElementById('new-salmon-cookies');
 
 new_store_form.addEventListener('submit', function(formSubmit) {
-
   formSubmit.preventDefault();
-  //console.log(formSubmit);
-  // console.log(formSubmit.target.salmonCookiesName.value);
   var store_name = formSubmit.target.salmonCookiesName.value;
   var location = formSubmit.target.salmonCookiesLocation.value;
   var min_cust = formSubmit.target.salmonCookiesMinCust.value;
@@ -212,59 +199,4 @@ new_store_form.addEventListener('submit', function(formSubmit) {
 
   //clearTable();
   all_stores[5].render_all_stores();
-
-  //call new S_c, when it's triggered, user has entered new info
-  //all calcs exist
-
-  //adds input to page, but not doing it right yet.
-  // var target = document.getElementById('store-table');
-  // var new_store_tr = document.createElement('tr');
-  // target.appendChild(new_store_tr);
-  // //creates td for input
-  // var new_store_td = document.createElement('td');
-  // new_store_td.textContent = store_name;
-  // new_store_tr.appendChild(new_store_td);
-
-  // //only prints what I put into the form. Doesn't link it up with my constructor function, and I'm not sure how to make
-  // //it do so. Leaving this up here to show that I can get it to print something to the page, even though I haven't been
-  // //about to link new input to my random number based equations.
-  // new_store_td = document.createElement('td');
-  // new_store_td.textContent = location;
-  // new_store_tr.appendChild(new_store_td);
-
-  // new_store_td = document.createElement('td');
-  // new_store_td.textContent = 'mininum customers: ' + min_cust;
-  // new_store_tr.appendChild(new_store_td);
-
-  // new_store_td = document.createElement('td');
-  // new_store_td.textContent = 'maximum customers: ' + max_cust;
-  // new_store_tr.appendChild(new_store_td);
-
-  // new_store_td = document.createElement('td');
-  // new_store_td.textContent = 'Average order size: ' + avg_cookies_per_cust;
-  // new_store_tr.appendChild(new_store_td);
-
-  //event handle function needs to clear after form is submitted
-  //form event needs to handle new store, recall render func, 
-
-  /*console.log({
-    salmonCookiesName: store_name,
-    salmonCookiesLocation: location,
-    salmonCookiesMinCust: min_cust,
-    salmonCookiesMaxCust: max_cust,
-    // salmonCookiesOpen: store_open,
-    // salmonCookiesClose: store_close,
-    //salmonCookiesSoldHour: sold_each_hour,
-    salmonCookiesPerCust: avg_cookies_per_cust
-
-  });*/
 });
-
-// function clearTable() {
-//   word_total_row.innerHTML = '';
-// }
-//now I need to be get the form to fill onto the page. Duckett has answers? should be able to get it to move into
-//all_stores array, which would allow the function that prints everything to take care of it. form.push(all_stores)
-// do something with new Salmon_cookies. Need to get it so that something from the form adds to the constructor function
-//I just want this to make new salmon cookies why is that hard. USE YOUR PROTOTYPES
-
